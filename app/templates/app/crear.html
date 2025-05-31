@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Administración de Inventario - Crear Producto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-200 text-gray-900">
+    <div class="min-h-screen flex items-center justify-center">
+      <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full border border-gray-300">
+        <h1 class="text-3xl font-bold mb-6 text-center text-blue-900">
+          Administración de Inventario
+        </h1>
+        <h2 class="text-xl font-semibold mb-4 text-center text-blue-700">
+          Crear Producto
+        </h2>
+
+        {% if errores %}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+          <ul class="list-disc list-inside">
+            {% for campo, mensaje in errores.items %}
+            <li><strong>{{ campo }}:</strong> {{ mensaje }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        <form method="post" class="space-y-5">
+          {% csrf_token %}
+
+          <div>
+            <label class="block mb-1 font-semibold text-gray-700">Nombre</label>
+            <input
+              type="text"
+              name="nombre"
+              value="{{ nombre }}"
+              class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label class="block mb-1 font-semibold text-gray-700">Descripción</label>
+            <input
+              type="text"
+              name="descripcion"
+              value="{{ descripcion }}"
+              class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label class="block mb-1 font-semibold text-gray-700">Stock</label>
+            <input
+              type="text"
+              name="stock"
+              value="{{ stock }}"
+              class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div class="text-center">
+            <button
+              type="submit"
+              class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition"
+            >
+              Guardar Producto
+            </button>
+          </div>
+        </form>
+
+        <div class="text-center mt-6">
+          <a
+            href="{% url 'lista_productos' %}"
+            class="text-blue-700 hover:underline"
+          >
+            ← Volver a la lista
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

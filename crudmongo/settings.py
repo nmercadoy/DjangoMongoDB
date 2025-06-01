@@ -1,5 +1,5 @@
 from pathlib import Path
-from .mongodb import init_mongo
+from app.mongodb import init_mongo
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
